@@ -3,7 +3,7 @@ version: "3"
 services:
   web:
     build: .  
-    # image: "v11hh/myfirstapp:2.0"
+    #image: "v11hh/myfirstapp:2.0"
     environment:
       - MESSAGE= "Victor Siqueira"
     container_name: web

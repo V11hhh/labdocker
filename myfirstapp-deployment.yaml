@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: labgke
+  labels:
+    app: myapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: redis
+        image: redis
+        ports:
+          - containerPort: 6379
+            name: redis
+            protocol: TCP
+      - name: app
+        image: "gcr.io/victor-mbaimpacta-turma04/myfirstapp:2.1"
+        env:
+        - name: MESSAGE
+          value: "Victor - Desafio feito com Sucesso!"
+        - name: "REDIS_HOST"
+          value: "localhost"
+        ports:
+         - containerPort: 80
